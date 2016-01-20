@@ -17,11 +17,16 @@ def fetch_html(url):
     return results.content
 
 
-def parser(content):
+def fetch_links(content):
     tree = html.fromstring(content)
-    links = tree.xpath('//div[@class="productInfo"]')
-    for link in links:
-        print link
+    links = tree.xpath('//div[@class="productInfo"]/h3/a')
+    return [link.get('href') for link in links]
+
+
+def read_page(page):
+    results = requests.get(page)
+    tree = html.fromstring(results.content)
+    print tree
 
 
 def scrap():
@@ -38,8 +43,10 @@ def scrap():
     logger.addHandler(ch)
 
     url = 'http://hiring-tests.s3-website-eu-west-1.amazonaws.com/2015_Developer_Scrape/5_products.html'
-    html = fetch_html(url)
-    parser(html)
+    content = fetch_html(url)
+    results = fetch_links(content)
+    for page in results:
+        read_page(page)
 
 
 scrap()
