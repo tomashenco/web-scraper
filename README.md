@@ -9,7 +9,7 @@ requests 2.81+
 lxml 3.44+
 
 # Running
-scrap URL
+scrap.py URL
 
 Example use:
 scrap http://website.com/products.html
