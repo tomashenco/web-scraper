@@ -36,5 +36,3 @@ def scrap(url):
 
     # Show the result
     print json.dumps({'results': products, 'totals': sum_price(products)}, indent=2)
-
-scrap('http://hiring-tests.s3-website-eu-west-1.amazonaws.com/2015_Developer_Scrape/5_products.html')
