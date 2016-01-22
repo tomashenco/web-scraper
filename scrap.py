@@ -1,5 +1,6 @@
 import logging
 import json
+from sys import argv
 from collections import OrderedDict
 from tools import fetch_html, fetch_links, fetch_title, fetch_tree, fetch_price, fetch_description, sum_price
 
@@ -36,3 +37,5 @@ def scrap(url):
 
     # Show the result
     print json.dumps({'results': products, 'totals': sum_price(products)}, indent=2)
+
+scrap(argv[1])
